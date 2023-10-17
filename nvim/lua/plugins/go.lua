@@ -8,7 +8,7 @@ return {
   config = function()
     require("go").setup()
 
-    -- Run gofmt + goimport on save
+    --Run gofmt + goimport on save
     local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
     vim.api.nvim_create_autocmd("BufWritePre", {
       pattern = "*.go",
@@ -21,4 +21,5 @@ return {
   event = { "CmdlineEnter" },
   ft = { "go", "gomod" },
   build = ':lua require("go.install").update_all_sync()',
+  lsp_inlay_hints = { enabled = false },
 }

@@ -1,7 +1,7 @@
 return {
   "f-person/git-blame.nvim",
   config = function()
-    -- specify config preferences
+    -- specificy config preferences
     require("gitblame").setup({
       message_template = "     <author>, <date> • <summary>",
       date_format = "%r",
