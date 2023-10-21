@@ -1,0 +1,13 @@
+# This overrides the default keybindings for pushing and pulling.
+# The default keybindings use 'P' for push and 'p' for pull, which was quite counter-intuitive.
+# This configuration changes the keybindings to use 'p' for push and 'P' for pull, making it more intuitive.
+
+customCommands:
+  - key: "p"
+    context: "localBranches"
+    command: "git push"
+    description: "Push"
+  - key: "P"
+    context: "localBranches"
+    command: "git pull"
+    description: "Pull"
