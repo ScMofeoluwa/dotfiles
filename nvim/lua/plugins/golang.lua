@@ -12,7 +12,13 @@ return {
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
       require("go").setup({
         capabilities = capabilities,
-        -- lsp_on_attach = require('craftzdog.lsp').on_attach,
+        lsp_on_attach = function(_, bufnr)
+          local nmap = function(keys, func, desc)
+            vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+          end
+
+          nmap("<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split")
+        end,
         lsp_cfg = {
           settings = {
             gopls = {
