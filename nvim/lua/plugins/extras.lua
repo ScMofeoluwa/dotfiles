@@ -1,11 +1,14 @@
 return {
   {
     "wakatime/vim-wakatime",
+    lazy = false,
   },
+  { "saghen/blink.cmp", enabled = false },
   {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",
+    enabled = true,
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       "L3MON4D3/LuaSnip",
@@ -150,7 +153,7 @@ return {
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
-      local trouble = require("trouble.providers.telescope")
+      local trouble = require("trouble.sources.telescope")
       local icons = require("config.icons")
 
       vim.api.nvim_create_autocmd("FileType", {
@@ -179,10 +182,10 @@ return {
           mappings = {
             i = {
               ["<esc>"] = actions.close,
-              ["<C-t>"] = trouble.open_with_trouble,
+              ["<C-t>"] = trouble,
             },
 
-            n = { ["<C-t>"] = trouble.open_with_trouble },
+            n = { ["<C-t>"] = trouble },
           },
           previewer = false,
           prompt_prefix = " " .. icons.ui.Telescope .. " ",
@@ -365,58 +368,36 @@ return {
         filetypes = { "TelescopePrompt" },
       },
     },
-    config = function(_, opts)
+    config = function()
       local which_key = require("which-key")
-      which_key.setup(opts)
-      which_key.register({
-        c = {
-          name = "+LSP",
-          a = { vim.lsp.buf.code_action, "Code Action" },
-          A = { vim.lsp.buf.range_code_action, "Range Code Actions" },
-          s = { vim.lsp.buf.signature_help, "Display Signature Information" },
-          r = { vim.lsp.buf.rename, "Rename all references" },
-          f = { vim.lsp.buf.format, "Format" },
-          i = { require("telescope.builtin").lsp_implementations, "Implementation" },
-          l = { "<cmd>TroubleToggle document_diagnostics<cr>", "Document Diagnostics (Trouble)" },
-          L = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Workspace Diagnostics (Trouble)" },
-          w = { require("telescope.builtin").diagnostics, "Diagnostics" },
-
-          W = {
-            name = "+Workspace",
-            a = { vim.lsp.buf.add_workspace_folder, "Add Folder" },
-            r = { vim.lsp.buf.remove_workspace_folder, "Remove Folder" },
-            l = {
-              function()
-                print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-              end,
-              "List Folders",
-            },
-          },
+      which_key.add({
+        { "<leader>b", group = "Buffer" },
+        { "<leader>c", group = "Code" },
+        { "<leader>ca", vim.lsp.buf.code_action, desc = "Code Action" },
+        { "<leader>cA", vim.lsp.buf.range_code_action, desc = "Range Code Actions" },
+        { "<leader>cA", vim.lsp.buf.signature_help, desc = "Display Signature Information" },
+        { "<leader>cr", vim.lsp.buf.rename, desc = "Rename all references" },
+        { "<leader>cf", vim.lsp.buf.format, desc = "Format" },
+        { "<leader>ci", require("telescope.builtin").lsp_implementations, desc = "Implementation" },
+        { "<leader>cl", "<cmd>TroubleToggle document_diagnostics<cr>", desc = "Document Diagnostics (Trouble)" },
+        { "<leader>cL", "<cmd>TroubleToggle workspace_diagnostics<cr>", desc = "Workspace Diagnostics (Trouble)" },
+        { "<leader>cw", require("telescope.builtin").diagnostics, desc = "Diagnostics" },
+        { "<leader>f", group = "File" },
+        { "<leader>g", group = "Git" },
+        { "<leader>q", group = "Quit" },
+        { "<leader>s", group = "Search" },
+        { "<leader>t", group = "Test" },
+        { "<leader>u", group = "Toggle" },
+        { "<leader>w", group = "Workspace" },
+        { "<leader>wa", vim.lsp.buf.add_workspace_folder, desc = "Add Folder" },
+        { "<leader>wr", vim.lsp.buf.remove_workspace_folder, desc = "Remove Folder" },
+        {
+          "<leader>wl",
+          function()
+            print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+          end,
+          desc = "Format",
         },
-        s = {
-          name = "+Search",
-        },
-        b = {
-          name = "+Buffer",
-        },
-        f = {
-          name = "+File",
-        },
-        g = {
-          name = "+Git",
-        },
-        q = {
-          name = "+Quit",
-        },
-        u = {
-          name = "+Toggle",
-        },
-        t = {
-          name = "+Test",
-        },
-      }, {
-        mode = "n",
-        prefix = "<leader>",
       })
     end,
   },
@@ -714,16 +695,6 @@ return {
         easing_function = "sine",
         hide_cursor = true,
         cursor_scrolls_alone = true,
-      })
-    end,
-  },
-
-  -- Neovim setup for init.lua and plugin development with full signature help, docs and completion for the nvim lua API
-  {
-    "folke/neodev.nvim",
-    config = function()
-      require("neodev").setup({
-        library = { plugins = { "neotest" }, types = true },
       })
     end,
   },

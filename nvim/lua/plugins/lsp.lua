@@ -4,13 +4,14 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for neovim
-      "williamboman/mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
-      "WhoIsSethDaniel/mason-tool-installer.nvim",
+      { "williamboman/mason.nvim", config = true },
+      { "williamboman/mason-lspconfig.nvim" },
+      { "WhoIsSethDaniel/mason-tool-installer.nvim" },
+      { "b0o/schemastore.nvim" },
+      { "hrsh7th/cmp-nvim-lsp" },
 
       -- Useful status updates for LSP.
       -- { "j-hui/fidget.nvim", opts = {} },
-      { "folke/neodev.nvim", opts = {} },
     },
     config = function()
       require("mason").setup({
@@ -25,8 +26,6 @@ return {
       })
 
       require("lspconfig.ui.windows").default_options.border = "single"
-
-      require("neodev").setup()
 
       vim.api.nvim_create_autocmd("LspAttach", {
         group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
@@ -60,7 +59,6 @@ return {
 
       local capabilities = vim.lsp.protocol.make_client_capabilities()
       capabilities = vim.tbl_deep_extend("force", capabilities, require("cmp_nvim_lsp").default_capabilities())
-
       local servers = {
         lua_ls = {
           settings = {
@@ -129,7 +127,7 @@ return {
     config = function()
       local telescope = require("telescope")
       local actions = require("telescope.actions")
-      local trouble = require("trouble.providers.telescope")
+      local trouble = require("trouble.sources.telescope")
       local icons = require("config.icons")
 
       vim.api.nvim_create_autocmd("FileType", {
@@ -157,10 +155,10 @@ return {
           mappings = {
             i = {
               ["<esc>"] = actions.close,
-              ["<C-t>"] = trouble.open_with_trouble,
+              ["<C-t>"] = trouble,
             },
 
-            n = { ["<C-t>"] = trouble.open_with_trouble },
+            n = { ["<C-t>"] = trouble },
           },
           previewer = false,
           prompt_prefix = " " .. icons.ui.Telescope .. " ",

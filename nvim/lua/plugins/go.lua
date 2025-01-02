@@ -5,11 +5,16 @@ return {
       "ray-x/guihua.lua",
       "neovim/nvim-lspconfig",
       "nvim-treesitter/nvim-treesitter",
-
+      "hrsh7th/cmp-nvim-lsp",
       "leoluz/nvim-dap-go",
     },
     config = function()
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      -- Configure treesitter
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = { "go" },
+      })
 
       require("go").setup({
         capabilities = capabilities,

@@ -16,24 +16,6 @@ return {
     },
   },
 
-  {
-    -- Gruvbox
-    {
-      "sainnhe/gruvbox-material",
-      enabled = true,
-      config = function()
-        vim.api.nvim_set_var("gruvbox_material_foreground", "material")
-        vim.api.nvim_set_var("gruvbox_material_background", "hard")
-        vim.api.nvim_set_var("gruvbox_material_ui_contrast", "high")
-        vim.api.nvim_set_var("gruvbox_material_float_style", "dim")
-        vim.api.nvim_set_var("gruvbox_material_statusline_style", "material")
-        vim.api.nvim_set_var("gruvbox_material_better_performance", 1)
-        vim.cmd.colorscheme("gruvbox-material")
-      end,
-      priority = 1000,
-    },
-  },
-
   -- Lualine
   {
     "nvim-lualine/lualine.nvim",
