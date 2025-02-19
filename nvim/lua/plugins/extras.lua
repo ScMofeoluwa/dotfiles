@@ -1,9 +1,34 @@
 return {
+  -- Wakatime
   {
     "wakatime/vim-wakatime",
     lazy = false,
   },
+  -- Disable blink cmp
   { "saghen/blink.cmp", enabled = false },
+  -- Git blame
+  {
+    "f-person/git-blame.nvim",
+    config = function()
+      -- specificy config preferences
+      require("gitblame").setup({
+        message_template = "     <author>, <date> • <summary>",
+        date_format = "%r",
+        message_when_not_committed = "     <author>, <date> • Uncommitted changes",
+      })
+    end,
+  },
+  -- nvim surround
+  {
+    "kylechui/nvim-surround",
+    version = "*", -- Use for stability; omit to use `main` branch for the latest features
+    event = "VeryLazy",
+    config = function()
+      require("nvim-surround").setup({
+        -- Configuration here, or leave empty to use defaults
+      })
+    end,
+  },
   {
     -- Autocompletion
     "hrsh7th/nvim-cmp",
@@ -497,6 +522,7 @@ return {
   {
     "nvim-neotest/neotest",
     dependencies = {
+      "nvim-neotest/nvim-nio",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       "antoinemadec/FixCursorHold.nvim",
