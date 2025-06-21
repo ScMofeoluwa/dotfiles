@@ -1,0 +1,86 @@
+[user]
+	name = Mofeoluwa Lijadu
+	email = lijsamobafunmilayo@gmail.com
+
+[alias]
+	unstage = reset HEAD --
+	unadd = reset HEAD --
+
+[core]
+	editor = nvim
+	autocrlf = input
+  pager = delta
+  excludesfile = ~/.gitignore
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+[column]
+  ui = auto
+
+[branch]
+  sort = -committerdate
+
+[tag]
+  sort = version:refname
+
+[init]
+  defaultBranch = main
+
+[delta]
+  navigate = true
+
+[diff]
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+  renames = true
+
+[push]
+  default = simple
+  autoSetupRemote = true
+  followTags = true
+
+[pull]
+  rebase = true
+
+[fetch]
+  prune = true
+  pruneTags = true
+  all = true
+
+[commit]
+  verbose = true
+
+[rerere]
+  enabled = true
+  autoupdate = true
+
+[help]
+  autocorrect = prompt
+
+[color]
+	ui = true
+
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+
+[color "diff"]
+	meta = 227
+	frag = magenta bold
+	commit = 227 bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
+
+[interactive]
+    diffFilter = delta --color-only
+
+[gc]
+	writeCommitGraph = true
