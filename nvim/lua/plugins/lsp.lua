@@ -81,14 +81,24 @@ return {
             },
           },
         },
-        gopls = {},
+        gopls = {
+          settings = {
+            gopls = {
+              buildFlags = { "-tags=integration" },
+            },
+          },
+        },
         tsserver = {},
       }
 
-      local ensure_installed = vim.tbl_keys(servers or {})
-      vim.list_extend(ensure_installed, {
-        "stylua", -- Used to format lua code
-      })
+      local lsp_to_mason = {
+        lua_ls = "lua-language-server",
+        gopls = "gopls",
+        tsserver = "typescript-language-server",
+      }
+
+      local ensure_installed = vim.tbl_values(lsp_to_mason)
+      table.insert(ensure_installed, "stylua")
       require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
       require("mason-lspconfig").setup({

@@ -23,7 +23,7 @@ return {
     ft = { "go", "gomod" },
     build = ':lua require("go.install").update_all_sync()',
     keys = {
-      { "<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", desc = "Goto Definition in Vertical Split" },
+      { "<leader>v", "<cmd>vsplit | lua vim.lsp.buf.definition()<cr>", "Goto Definition in Vertical Split" },
     },
   },
 }

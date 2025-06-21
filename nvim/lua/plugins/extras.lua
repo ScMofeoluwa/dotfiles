@@ -4,6 +4,18 @@ return {
     "wakatime/vim-wakatime",
     lazy = false,
   },
+  -- text wrapping
+  {
+    "andrewferrier/wrapping.nvim",
+    config = function()
+      require("wrapping").setup()
+    end,
+  },
+  {
+    "jwbaldwin/oscura.nvim",
+    lazy = false,
+    priority = 1000,
+  },
   -- Disable blink cmp
   { "saghen/blink.cmp", enabled = false },
   -- Git blame

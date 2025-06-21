@@ -55,12 +55,25 @@ return {
     dap.listeners.before.event_exited.dapui_config = function()
       dapui.close()
     end
+
+    vim.keymap.set("n", "<leader>dx", function()
+      require("dap").terminate()
+      require("dapui").close()
+    end, { desc = "Kill Debugger (with UI close)" })
   end,
   keys = {
-    { "<leader>dt", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle debugger breakpoint" },
+    {
+      "<leader>dt",
+      function()
+        require("dapui").toggle()
+      end,
+      desc = "Toggle Debugger UI",
+    },
+    { "<leader>db", "<cmd>DapToggleBreakpoint<cr>", desc = "Toggle debugger breakpoint" },
     { "<leader>dc", "<cmd>DapContinue<cr>", desc = "Continue running debugger" },
-    { "<leader>dx", "<cmd>DapTerminate<cr>", desc = "Kill Debugger" },
-    { "<leader>ds", "<cmd>DapStepOver<cr>", desc = "Step over Debugger" },
+    { "<leader>dsv", "<cmd>DapStepOver<cr>", desc = "Step over Debugger" },
+    { "<leader>dsi", "<cmd>DapStepInto<cr>", desc = "Step into Debugger" },
+    { "<leader>dso", "<cmd>DapStepOut<cr>", desc = "Step out Debugger" },
     { "<leader>du", "<cmd>DapToggleRepl<cr>", desc = "open Debugger Repl" },
   },
 }

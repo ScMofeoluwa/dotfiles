@@ -85,5 +85,16 @@ keymap.set("i", "jj", "<ESC>", opts)
 keymap.set({ "n", "x", "o" }, "H", "^", opts)
 keymap.set({ "n", "x", "o" }, "L", "$", opts)
 
+-- Half-page jumping with centering
+keymap.set("n", "<C-d>", "<C-d>zz", opts)
+keymap.set("n", "<C-u>", "<C-u>zz", opts)
+
+keymap.set("v", "<C-d>", "<C-d>zz", opts)
+keymap.set("v", "<C-u>", "<C-u>zz", opts)
+
 -- Fast searching
 keymap.set("n", "<Leader>f", "<cmd>Telescope find_files<cr>", opts)
+
+-- Remap for dealing with visual line wraps
+keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
+keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
