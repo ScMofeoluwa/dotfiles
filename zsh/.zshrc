@@ -2,11 +2,12 @@
 export ZSH="/Users/mofeoluwa/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(
-    git
-    timer
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-    zsh-autocomplete
+  git
+  timer
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  fast-syntax-highlighting
+  zsh-autocomplete
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -46,3 +47,6 @@ eval "$(zoxide init zsh)"
 # NVM (Node.js)
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+
+# bun completions
+[ -s "/Users/mofeoluwa/.bun/_bun" ] && source "/Users/mofeoluwa/.bun/_bun"

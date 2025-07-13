@@ -501,6 +501,7 @@ return {
             hide_gitignored = false,
             hide_by_name = {
               "node_modules",
+              "__pycache__",
             },
             never_show = {
               ".DS_Store",
