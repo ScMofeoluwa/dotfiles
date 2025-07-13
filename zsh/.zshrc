@@ -25,7 +25,6 @@ export PATH="$HOME/.local/share/solana/install/active_release/bin:$PATH"
 alias ls='lsd'
 alias cat='bat'
 alias vim='nvim'
-alias z='j'
 alias ae='source .venv/bin/activate'
 
 # Functions
@@ -41,7 +40,6 @@ portpid()
 
 # Tools
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-[ -f /opt/homebrew/etc/profile.d/autojump.sh ] && . /opt/homebrew/etc/profile.d/autojump.sh
 eval "$(zoxide init zsh)"
 
 # NVM (Node.js)
