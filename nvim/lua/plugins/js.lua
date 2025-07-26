@@ -11,14 +11,22 @@ return {
       local eslint = require("none-ls.diagnostics.eslint_d")
       local eslint_fmt = require("none-ls.formatting.eslint_d")
 
+      local formatting_augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
       null_ls.setup({
-        on_attach = function(client)
+        on_attach = function(client, bufnr)
           if client.name == "null-ls" then
+            vim.api.nvim_clear_autocmds({
+              group = formatting_augroup,
+              buffer = bufnr,
+            })
+
             vim.api.nvim_create_autocmd("BufWritePre", {
-              pattern = { "*.js", "*.jsx", "*.ts", "*.tsx" },
+              group = formatting_augroup,
+              buffer = bufnr,
               callback = function()
                 vim.lsp.buf.format({
-                  async = false,
+                  async = true,
                   filter = function(c)
                     return c.name == "null-ls"
                   end,
