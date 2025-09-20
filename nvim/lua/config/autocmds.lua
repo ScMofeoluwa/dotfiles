@@ -20,3 +20,4 @@ vim.api.nvim_create_autocmd("BufEnter", {
     vim.diagnostic.enable(false)
   end,
 })
+

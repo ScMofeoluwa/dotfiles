@@ -16,8 +16,6 @@ return {
     lazy = false,
     priority = 1000,
   },
-  -- Disable blink cmp
-  { "saghen/blink.cmp", enabled = false },
   -- Git blame
   {
     "f-person/git-blame.nvim",
