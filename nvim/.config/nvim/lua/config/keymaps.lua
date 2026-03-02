@@ -101,4 +101,11 @@ end, { desc = "Find Files" })
 keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true })
 keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true })
 
+-- Delete mark
+keymap.set('n', 'dm', function()
+  local mark = vim.fn.getcharstr()
+  vim.cmd('delmarks ' .. mark)
+  print('Deleted mark: ' .. mark)
+end, { desc = 'Delete mark' })
+
 

@@ -17,6 +17,14 @@ end)
 -- 1. Search mode
 
 function M.update_config(config)
+	config.mouse_bindings = {
+		{
+			event = { Up = { streak = 1, button = 'Left' } },
+			mods = 'NONE',
+			action = wezterm.action.CompleteSelectionOrOpenLinkAtMouseCursor 'Clipboard',
+		},
+	}
+
 	config.keys = {
 		-----------------------------
 		-- Pane and tab management --

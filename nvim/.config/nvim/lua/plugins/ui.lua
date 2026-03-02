@@ -34,8 +34,25 @@ return {
       },
       servers = {
         vtsls = {
+          root_dir = function(bufnr, on_dir)
+            local root = vim.fs.root(bufnr, { "tsconfig.json", "jsconfig.json", "package.json" })
+              or vim.fs.root(bufnr, { "pnpm-lock.yaml", "yarn.lock", "package-lock.json", "bun.lock", ".git" })
+              or vim.fn.getcwd()
+
+            if on_dir then
+              on_dir(root)
+            else
+              return root
+            end
+          end,
           settings = {
             typescript = {
+              tsserver = {
+                maxTsServerMemory = 4096,
+              },
+              preferences = {
+                disableAutomaticTypingAcquisition = true,
+              },
               inlayHints = {
                 parameterNames = { enabled = "all" },
                 parameterTypes = { enabled = true },
@@ -63,6 +80,9 @@ return {
         },
         ts_ls = { enabled = false },
         ruff = {},
+      },
+      inlay_hints = {
+        enabled = false,
       },
     },
   },
@@ -98,7 +118,7 @@ return {
       vim.api.nvim_set_var("gruvbox_material_ui_contrast", "high")
       vim.api.nvim_set_var("gruvbox_material_float_style", "bright")
       vim.api.nvim_set_var("gruvbox_material_statusline_style", "material")
-      -- vim.api.nvim_set_var("gruvbox_material_better_performance", 1)
+      -- vim.api.nvim_set_var("gruvbox_material_transparent_background", 1)
       vim.cmd.colorscheme("gruvbox-material")
     end,
     priority = 1000,
