@@ -1,3 +1,6 @@
 [user]
     name = Mofeoluwa Lijadu
     email = mofe@shiga.io
+
+[core]
+    sshCommand = ssh -i ~/.ssh/id_ed25519_shiga

@@ -55,6 +55,10 @@ alias cat='bat'
 alias vim='nvim'
 alias ae='source .venv/bin/activate'
 
+# Ring bell after each command so tmux can detect completion in other windows
+_tmux_bell() { printf '\a' }
+add-zsh-hook precmd _tmux_bell
+
 # Functions
 portpid()
 {

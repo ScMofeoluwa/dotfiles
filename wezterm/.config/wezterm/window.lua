@@ -14,6 +14,7 @@ function M.update_config(config)
 	config.show_close_tab_button_in_tabs = true
 	config.tab_max_width = 50
 	config.window_decorations = "RESIZE"
+	config.audible_bell = "Disabled"
 	config.window_padding = {
 		left = 20,
 		right = 20,

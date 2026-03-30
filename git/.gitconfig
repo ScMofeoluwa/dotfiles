@@ -85,5 +85,5 @@
 [gc]
 	writeCommitGraph = true
 
-[includeIf "gitdir:~/Documents/Projects/shiga-web/"]
+[includeIf "gitdir:~/Documents/Shiga/"]
     path = ~/.gitconfig-shiga

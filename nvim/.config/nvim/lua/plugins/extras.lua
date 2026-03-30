@@ -16,6 +16,30 @@ return {
     lazy = false,
     priority = 1000,
   },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    opts = function(_, opts)
+      opts.ensure_installed = opts.ensure_installed or {}
+      local parsers = { "markdown", "markdown_inline", "html", "latex", "typst", "yaml", "go", "json", "dockerfile", "lua", "javascript", "typescript", "python", "rust" }
+
+      for _, parser in ipairs(parsers) do
+        if not vim.tbl_contains(opts.ensure_installed, parser) then
+          table.insert(opts.ensure_installed, parser)
+        end
+      end
+    end,
+  },
+  {
+    "OXY2DEV/markview.nvim",
+    lazy = false,
+    keys = {
+      { "<leader>mp", "<cmd>Markview toggle<cr>", desc = "Markdown Preview (Buffer)" },
+      { "<leader>mP", "<cmd>Markview Toggle<cr>", desc = "Markdown Preview (Global)" },
+      { "<leader>ms", "<cmd>Markview splitToggle<cr>", desc = "Markdown Preview (Split)" },
+      { "<leader>mh", "<cmd>Markview HybridToggle<cr>", desc = "Markdown Hybrid Toggle" },
+    },
+    opts = {},
+  },
   -- Disable blink cmp
   { "saghen/blink.cmp", enabled = false },
   -- Git blame
@@ -433,6 +457,7 @@ return {
         { "<leader>cw", require("telescope.builtin").diagnostics, desc = "Diagnostics" },
         { "<leader>f", group = "File" },
         { "<leader>g", group = "Git" },
+        { "<leader>m", group = "Markdown" },
         { "<leader>q", group = "Quit" },
         { "<leader>s", group = "Search" },
         { "<leader>t", group = "Test" },
