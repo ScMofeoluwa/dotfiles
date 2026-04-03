@@ -16,7 +16,9 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Disable shell check for .env files
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = ".env",
-  callback = function()
-    vim.diagnostic.enable(false)
+  callback = function(args)
+    vim.diagnostic.enable(false, { bufnr = args.buf })
   end,
 })
+
+

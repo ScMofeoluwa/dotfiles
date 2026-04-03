@@ -40,37 +40,37 @@ keymap.set("n", "<C-w><down>", "<C-w>-")
 -- Diagnostics
 -- Goto next diagnostic of any severity
 keymap.set("n", "]d", function()
-  vim.diagnostic.goto_next({})
+  vim.diagnostic.jump({ count = 1 })
   vim.api.nvim_feedkeys("zz", "n", false)
 end)
 
 -- Goto previous diagnostic of any severity
 keymap.set("n", "[d", function()
-  vim.diagnostic.goto_prev({})
+  vim.diagnostic.jump({ count = -1 })
   vim.api.nvim_feedkeys("zz", "n", false)
 end)
 
 -- Goto next error diagnostic
 keymap.set("n", "]e", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.ERROR })
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.ERROR })
   vim.api.nvim_feedkeys("zz", "n", false)
 end)
 
 -- Goto previous error diagnostic
 keymap.set("n", "[e", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.ERROR })
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.ERROR })
   vim.api.nvim_feedkeys("zz", "n", false)
 end)
 
 -- Goto next warning diagnostic
 keymap.set("n", "]w", function()
-  vim.diagnostic.goto_next({ severity = vim.diagnostic.severity.WARN })
+  vim.diagnostic.jump({ count = 1, severity = vim.diagnostic.severity.WARN })
   vim.api.nvim_feedkeys("zz", "n", false)
 end)
 
 -- Goto previous warning diagnostic
 keymap.set("n", "[w", function()
-  vim.diagnostic.goto_prev({ severity = vim.diagnostic.severity.WARN })
+  vim.diagnostic.jump({ count = -1, severity = vim.diagnostic.severity.WARN })
   vim.api.nvim_feedkeys("zz", "n", false)
 end)
 

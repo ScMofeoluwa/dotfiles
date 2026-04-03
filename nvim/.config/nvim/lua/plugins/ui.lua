@@ -33,52 +33,9 @@ return {
         },
       },
       servers = {
-        vtsls = {
-          root_dir = function(bufnr, on_dir)
-            local root = vim.fs.root(bufnr, { "tsconfig.json", "jsconfig.json", "package.json" })
-              or vim.fs.root(bufnr, { "pnpm-lock.yaml", "yarn.lock", "package-lock.json", "bun.lock", ".git" })
-              or vim.fn.getcwd()
-
-            if on_dir then
-              on_dir(root)
-            else
-              return root
-            end
-          end,
-          settings = {
-            typescript = {
-              tsserver = {
-                maxTsServerMemory = 4096,
-              },
-              preferences = {
-                disableAutomaticTypingAcquisition = true,
-              },
-              inlayHints = {
-                parameterNames = { enabled = "all" },
-                parameterTypes = { enabled = true },
-                variableTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                enumMemberValues = { enabled = true },
-              },
-              implementationsCodeLens = { enabled = false },
-              referencesCodeLens = { enabled = false },
-            },
-            javascript = {
-              inlayHints = {
-                parameterNames = { enabled = "all" },
-                parameterTypes = { enabled = true },
-                variableTypes = { enabled = true },
-                propertyDeclarationTypes = { enabled = true },
-                functionLikeReturnTypes = { enabled = true },
-                enumMemberValues = { enabled = true },
-              },
-              implementationsCodeLens = { enabled = false },
-              referencesCodeLens = { enabled = false },
-            },
-          },
-        },
+        vtsls = { enabled = false },
         ts_ls = { enabled = false },
+        postgres_lsp = { enabled = false },
         ruff = {},
       },
       inlay_hints = {
@@ -170,8 +127,8 @@ return {
               },
             },
             {
-              "fancy_diagnostics",
-              sources = { "nvim_lsp" },
+              "diagnostics",
+              sources = { "nvim_diagnostic" },
               symbols = { error = " ", warn = " ", info = " " },
             },
             { "fancy_searchcount" },

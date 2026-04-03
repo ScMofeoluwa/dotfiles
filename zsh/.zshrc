@@ -7,7 +7,6 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   fast-syntax-highlighting
-  zsh-autocomplete
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -40,6 +39,7 @@ add-zsh-hook chpwd _antigravity_history_setup
 
 # Shell behaviour
 set -o vi
+eval "$(atuin init zsh)"
 
 # Environment Variables
 export EDITOR="nvim"
@@ -83,3 +83,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # Added by Antigravity
 export PATH="/Users/mofeoluwa/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/mofeoluwa/.opencode/bin:$PATH
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
