@@ -529,6 +529,7 @@ return {
               "venv",
               "target",
               "dist",
+              "docs",
             },
             never_show = {
               ".DS_Store",
