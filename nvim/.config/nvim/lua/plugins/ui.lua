@@ -36,6 +36,7 @@ return {
         vtsls = { enabled = false },
         ts_ls = { enabled = false },
         postgres_lsp = { enabled = false },
+        sqls = { enabled = false },
         ruff = {},
       },
       inlay_hints = {

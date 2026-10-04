@@ -85,5 +85,8 @@
 [gc]
 	writeCommitGraph = true
 
+[url "git@github.com:"]
+	insteadOf = https://github.com/
+
 [includeIf "gitdir:~/Documents/Shiga/"]
     path = ~/.gitconfig-shiga

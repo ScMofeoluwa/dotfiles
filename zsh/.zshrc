@@ -7,8 +7,13 @@ plugins=(
   zsh-autosuggestions
   zsh-syntax-highlighting
   fast-syntax-highlighting
+  zsh-autocomplete
 )
 source $ZSH/oh-my-zsh.sh
+
+# zsh-autocomplete + autosuggestions + vi coexistence
+zstyle ':autocomplete:*' min-delay 0.1
+zstyle ':autocomplete:*' min-input 1
 
 # --- Antigravity History Isolation ---
 _antigravity_history_setup() {
@@ -71,7 +76,15 @@ portpid()
 }
 
 # Tools
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+command -v fzf >/dev/null && source <(fzf --zsh)
+bindkey -M viins '^R' fzf-history-widget 2>/dev/null
+bindkey '^R' fzf-history-widget 2>/dev/null
+# autocomplete menu keys must come after fzf (it rebinds Tab)
+bindkey '^I' menu-select
+[[ -n "${terminfo[kcbt]}" ]] && bindkey "$terminfo[kcbt]" reverse-menu-complete
+bindkey '^[[Z' reverse-menu-complete
+bindkey -M menuselect '^I' menu-complete
+bindkey -M menuselect '^[[Z' reverse-menu-complete
 eval "$(zoxide init zsh)"
 
 # NVM (Node.js)
