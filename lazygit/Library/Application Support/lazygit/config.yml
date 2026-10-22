@@ -1,4 +1,10 @@
+services:
+  "github-shiga": "github:github.com"
+
 keybinding:
   universal:
     pushFiles: "p"
     pullFiles: "P"
+  branches:
+    renameBranch: "r"
+    rebaseBranch: "R"

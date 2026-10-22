@@ -9,7 +9,7 @@ function M.update_config(config)
 		{
 			family = "OperatorMonoLig Nerd Font",
 			-- family = "GeistMono Nerd Font",
-			weight = "Light",
+			weight = 325,
 		},
 	})
 	config.font_size = 13

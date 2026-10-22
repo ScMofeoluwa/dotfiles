@@ -61,3 +61,4 @@ for type, icon in pairs(signs) do
 end
 
 vim.g.lazyvim_inlay_hints = false
+vim.g.lazyvim_prettier_needs_config = true
